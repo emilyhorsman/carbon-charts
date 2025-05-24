@@ -1,5 +1,5 @@
 import { bin as d3Bin, scaleOrdinal, stack, stackOffsetDiverging } from 'd3'
-import { cloneDeep, fromPairs, groupBy, merge, uniq } from 'lodash-es'
+import { cloneDeep, fromPairs, merge, uniq } from 'lodash-es'
 import { getProperty, updateLegendAdditionalItems } from '@/tools'
 import { color as colorConfigs, legend as legendConfigs } from '@/configuration'
 import { histogram as histogramConfigs } from '@/configuration-non-customizable'
