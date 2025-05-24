@@ -225,9 +225,18 @@ export class ChartModel {
 		return activeDataGroups.map((dataGroup: any) => dataGroup.name)
 	}
 
-	private aggregateBinDataByGroup(bin: any) {
-		return groupBy(bin, 'group')
-	}
+       private aggregateBinDataByGroup(bin: any) {
+               const options = this.getOptions()
+               const countKey = getProperty(options, 'data.countMapsTo')
+               const { groupMapsTo } = options.data
+               const totals: any = {}
+               bin.forEach((d: any) => {
+                       const group = d[groupMapsTo]
+                       const count = countKey ? Number(d[countKey] ?? 0) : 1
+                       totals[group] = (totals[group] ?? 0) + count
+               })
+               return totals
+       }
 
 	getBinConfigurations() {
 		// Manipulate data and options for Histogram
@@ -386,21 +395,26 @@ export class ChartModel {
 		const dataGroupNames = this.getDataGroupNames()
 
 		const stackKeys = this.getStackKeys({ bins, groups })
-		if (bins) {
-			return stackKeys.map((key: any) => {
-				const [binStart, binEnd] = key.split(':')
+               if (bins) {
+                       const countKey = getProperty(options, 'data.countMapsTo')
+                       return stackKeys.map((key: any) => {
+                               const [binStart, binEnd] = key.split(':')
 
-				const correspondingValues: any = { x0: binStart, x1: binEnd }
-				const correspondingBin = bins.find((bin: any) => bin.x0.toString() === binStart.toString())
-				dataGroupNames.forEach((dataGroupName: any) => {
-					correspondingValues[dataGroupName] = correspondingBin.filter(
-						(binItem: any) => binItem[groupMapsTo] === dataGroupName
-					).length
-				})
+                               const correspondingValues: any = { x0: binStart, x1: binEnd }
+                               const correspondingBin = bins.find((bin: any) => bin.x0.toString() === binStart.toString())
+                               dataGroupNames.forEach((dataGroupName: any) => {
+                                       const items = correspondingBin.filter(
+                                               (binItem: any) => binItem[groupMapsTo] === dataGroupName
+                                       )
+                                       correspondingValues[dataGroupName] = items.reduce(
+                                               (sum: number, item: any) => sum + (countKey ? Number(item[countKey] ?? 0) : 1),
+                                               0
+                                       )
+                               })
 
-				return correspondingValues
-			}) as any
-		}
+                               return correspondingValues
+                       }) as any
+               }
 
 		return stackKeys.map((key: any) => {
 			const correspondingValues: any = { sharedStackKey: key }

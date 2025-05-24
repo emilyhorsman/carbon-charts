@@ -119,16 +119,21 @@ export interface BaseChartOptions {
 	/**
 	 * options related to charting data
 	 */
-	data?: {
-		/**
-		 * identifier for data groups
-		 */
-		groupMapsTo?: string
-		/**
-		 * used to simulate data loading in skeleton way
-		 */
-		loading?: boolean
-		/**
+        data?: {
+                /**
+                 * identifier for data groups
+                 */
+                groupMapsTo?: string
+                /**
+                 * identifier for counts in pre-binned data
+                 * (defaults to 'count')
+                 */
+                countMapsTo?: string
+                /**
+                 * used to simulate data loading in skeleton way
+                 */
+                loading?: boolean
+                /**
 		 * options related to pre-selected data groups
 		 * Remains empty if every legend item is active or dataset doesn't have the data groups.
 		 */

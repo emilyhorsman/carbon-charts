@@ -608,12 +608,15 @@ const bulletChart: BulletChartOptions = merge({}, axisChart, {
  * options specific to stacked bar charts
  */
 const histogramChart: HistogramChartOptions = merge({}, baseBarChart, {
-	bars: {
-		dividerSize: 1.5
-	} as StackedBarOptions,
-	timeScale: merge(timeScale, {
-		addSpaceOnEdges: 0
-	} as TimeScaleOptions)
+        bars: {
+                dividerSize: 1.5
+        } as StackedBarOptions,
+        data: merge(chart.data, {
+                countMapsTo: 'count'
+        }),
+        timeScale: merge(timeScale, {
+                addSpaceOnEdges: 0
+        } as TimeScaleOptions)
 } as BarChartOptions)
 
 /*
