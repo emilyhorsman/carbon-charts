@@ -11,6 +11,7 @@ import { GaugeChart } from './gauge'
 import { GroupedBarChart } from './bar-grouped'
 import { HeatmapChart } from './heatmap'
 import { HistogramChart } from './histogram'
+import { HistogramChartBinned } from './histogram-binned'
 import { LineChart } from './line'
 import { LollipopChart } from './lollipop'
 import { MeterChart } from './meter'
@@ -38,6 +39,7 @@ export {
 	GroupedBarChart,
 	HeatmapChart,
 	HistogramChart,
+	HistogramChartBinned,
 	LineChart,
 	LollipopChart,
 	MeterChart,
@@ -66,6 +68,7 @@ export type Charts =
 	| GroupedBarChart
 	| HeatmapChart
 	| HistogramChart
+	| HistogramChartBinned
 	| LineChart
 	| LollipopChart
 	| MeterChart

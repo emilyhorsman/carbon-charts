@@ -390,11 +390,12 @@ const chart: BaseChartOptions = {
 	style: {
 		prefix: 'cc'
 	},
-	data: {
-		groupMapsTo: 'group',
-		loading: false,
-		selectedGroups: []
-	},
+        data: {
+                groupMapsTo: 'group',
+                countMapsTo: 'count',
+                loading: false,
+                selectedGroups: []
+        },
 	color: {
 		scale: null,
 		pairing: {

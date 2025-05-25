@@ -15,6 +15,7 @@ export {
 	GroupedBarChartComponent,
 	HeatmapChartComponent,
 	HistogramChartComponent,
+	HistogramBinnedChartComponent,
 	LineChartComponent,
 	LollipopChartComponent,
 	MeterChartComponent,

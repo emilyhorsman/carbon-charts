@@ -15,6 +15,7 @@ export {
 	DonutChart,
 	GaugeChart,
 	HistogramChart,
+	HistogramChartBinned,
 	LineChart,
 	LollipopChart,
 	PieChart,
